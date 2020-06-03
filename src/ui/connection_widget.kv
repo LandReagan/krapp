@@ -1,0 +1,70 @@
+<ConnectionWidget>:
+
+    kRPC_CWB: kRPC_CWB
+    connection_CWB: connection_CWB
+    vessel_CWB: vessel_CWB
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        ConnectionParameters:
+            ksp_state: root.ksp_state
+
+        BoxLayout:
+            orientation: 'horizontal'
+
+            ConnectionWidgetFlag:
+                id: kRPC_CWB
+
+            ConnectionWidgetFlag:
+                id: connection_CWB
+
+            ConnectionWidgetFlag:
+                id: vessel_CWB
+
+
+<ConnectionWidgetFlag>:
+    orientation: 'vertical'
+    upper_label: upper_label
+    lower_label: lower_label
+
+    Label:
+        id: upper_label
+        text: '###'
+
+    Label:
+        id: lower_label
+        text: '###'
+
+
+<ConnectionParameters>:
+
+    start_button: start_button
+    ip_input: ip_input
+    rpc_port_input: rpc_port_input
+    stream_port_input: stream_port_input
+
+    Button:
+        id: start_button
+        text: ">> CONNECT <<"
+        on_press: root.krpc_connect()
+        
+    TextInput:
+        id: ip_input
+        text: 'IP'
+        halign: 'center'
+        foreground_color: 1, 0, 0, 1
+        on_touch_down: root.select_ip()
+
+
+    TextInput:
+        id: rpc_port_input
+        text: 'RPC port'
+        halign: 'center'
+        foreground_color: 1, 0, 0, 1
+
+    TextInput:
+        id: stream_port_input
+        text: 'Stream port'
+        halign: 'center'
+        foreground_color: 1, 0, 0, 1
