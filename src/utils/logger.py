@@ -1,52 +1,38 @@
 import logging
 
-logger = None
 
+class KrappLogger:
+    """Logger handling class designed to be made available as a singleton via a provider"""
+    def __init__(self) -> None:
+        self.logger = logging.getLogger('main_logger')
+        self.logger.setLevel(logging.DEBUG)
 
-def init() -> None:
-    # Create logger
-    global logger
-    logger = logging.getLogger('main_logger')
-    logger.setLevel(logging.DEBUG)
+        # Set console handler
+        console_handler = logging.StreamHandler()
+        console_handler.setLevel(logging.DEBUG)
 
-    # Set console handler
-    console_handler = logging.StreamHandler()
-    console_handler.setLevel(logging.DEBUG)
+        # My formatter
+        formatter = logging.Formatter('%(asctime)s | %(levelname)s: %(message)s')
+        console_handler.setFormatter(formatter)
 
-    # My formatter
-    formatter = logging.Formatter('%(asctime)s | %(levelname)s: %(message)s')
-    console_handler.setFormatter(formatter)
+        self.logger.addHandler(console_handler)
 
-    logger.addHandler(console_handler)
+        self.logger.info('Logger started!')
 
-    logger.info('Logger started!')
+    def stop(self) -> None:
+        self.logger.info('App stops!')
 
+    def debug(self, message: str = "") -> None:
+        self.logger.debug(message)
 
-def stop() -> None:
-    global logger
-    logI('App stops!')
+    def info(self, message: str = "") -> None:
+        self.logger.info(message)
 
+    def warn(self, message: str = "") -> None:
+        self.logger.warning(message)
 
-def logD(message: str = "") -> None:
-    global logger
-    logger.debug(message)
+    def error(self, message: str = "") -> None:
+        self.logger.error(message)
 
-
-def logI(message: str = "") -> None:
-    global logger
-    logger.info(message)
-
-
-def logW(message: str = "") -> None:
-    global logger
-    logger.warning(message)
-
-
-def logE(message: str = "") -> None:
-    global logger
-    logger.error(message)
-
-
-def logC(message: str = "") -> None:
-    global logger
-    logger.critical(message)
+    def critical(self, message: str = "") -> None:
+        self.logger.critical(message)

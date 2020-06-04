@@ -1,7 +1,6 @@
 import krpc
-from utils import logger
+from containers import Core
 
-from kivy import __version__ as kivy_version
 from kivy.app import App
 from kivy.clock import Clock
 from kivy.uix.boxlayout import BoxLayout
@@ -33,7 +32,5 @@ class KRPCApp(App):
 
 
 if __name__ == '__main__':
-    logger.init()
-    logger.logI(kivy_version)
+    Core.logger().info('App is starting!')
     KRPCApp().run()
-    logger.stop()

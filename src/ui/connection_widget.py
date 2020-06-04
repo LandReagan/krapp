@@ -3,8 +3,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import ObjectProperty, StringProperty
 from kivy.lang.builder import Builder
 
-from utils.logger import logD, logI
-from connection.client import Client
+from containers import Core
 
 Builder.load_file('ui/connection_widget.kv')
 
@@ -13,15 +12,13 @@ class ConnectionWidget(BoxLayout):
     kRPC_CWB = ObjectProperty()
     connection_CWB = ObjectProperty()
     vessel_CWB = ObjectProperty()
-    ksp_state: Client = None
 
     def __init__(self, **kwargs):
         BoxLayout.__init__(self, **kwargs)
-        self.ksp_state = Client()
         Clock.schedule_once(self.initialize)
 
     def initialize(self, dt) -> None:
-        logD('ConnectionWidget initialization')
+        Core.logger().debug('ConnectionWidget initialization')
         self.kRPC_CWB.title = 'kRPC module'
         self.connection_CWB.title = 'KSP connection'
         self.vessel_CWB.title = 'Vessel connection'
@@ -48,7 +45,6 @@ class ConnectionParameters(BoxLayout):
     ip_input = ObjectProperty(None)
     rpc_port_input = ObjectProperty(None)
     stream_port_input = ObjectProperty(None)
-    ksp_state: Client = None
 
     def __init__(self, **kwargs):
         BoxLayout.__init__(self, **kwargs)
@@ -61,10 +57,7 @@ class ConnectionParameters(BoxLayout):
         self.ip_input.text = ''
 
     def krpc_connect(self):
-        logI('Connecting to KSP...')
-        if self.ksp_state is not None:
-            self.ksp_state.connect()
-        else:
-            logD('Initialization problem! Connection stopped.')
+        Core.logger().info('Connecting to KSP...')
+        # todo
 
 
