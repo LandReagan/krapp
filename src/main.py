@@ -1,12 +1,13 @@
 import krpc
 from containers import Core
+from ui.main_window import MainWindow
 
 from kivy.app import App
 from kivy.clock import Clock
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import ObjectProperty
 
-
+"""
 class MainWindow(BoxLayout):
 
     def __init__(self, **kwargs):
@@ -23,9 +24,10 @@ class StatusBar(BoxLayout):
 
     def initialize(self, dt):
         self.kRPC_version_label.text = 'kRPC: v' + krpc.version.__version__
+"""
 
 
-class KRPCApp(App):
+class KRPC2App(App):
     def build(self):
         self.title = 'kRPC tester'
         return MainWindow()
@@ -33,4 +35,4 @@ class KRPCApp(App):
 
 if __name__ == '__main__':
     Core.logger().info('App is starting!')
-    KRPCApp().run()
+    KRPC2App().run()

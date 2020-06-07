@@ -1,0 +1,18 @@
+#:include ui/colors.kv
+
+<TitleBar>:
+    orientation: 'horizontal'
+
+    Label:
+        text: 'KrApp'
+        font_size: self.height / 2
+        halign: 'center'
+        valign: 'middle'
+        bold: True
+        color: white
+        canvas.before:
+            Color:
+                rgba: blue_background
+            Rectangle:
+                size: self.size
+                pos: self.pos

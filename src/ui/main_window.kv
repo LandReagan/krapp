@@ -1,0 +1,30 @@
+#:import StatusBar ui.status_bar.StatusBar
+#:import TitleBar ui.title_bar.TitleBar
+#:import ConnectionWidget ui.connection_widget.ConnectionWidget
+#:include ui/colors.kv
+
+<MainWindow>:
+
+    title_bar: title_bar
+    status_bar: status_bar
+
+    on_size: root.on_size_changed()
+
+    canvas:
+        Color:
+            rgba: default_background_color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    orientation: 'vertical'
+
+    TitleBar:
+        id: title_bar
+        size_hint_y: .15
+
+    ConnectionWidget:
+        id: connection_widget
+
+    StatusBar:
+        id: status_bar

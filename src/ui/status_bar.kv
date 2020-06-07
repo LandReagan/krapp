@@ -1,0 +1,44 @@
+<StatusBar>:
+
+    krpc_version_label: krpc_version
+    ksp_status_label: ksp_status
+    body_name_label: body_name
+    vessel_name_label: vessel_name
+
+    size_hint_y: None
+
+    orientation: 'horizontal'  # Default is portrait
+
+    BoxLayout:
+        orientation: 'horizontal'
+
+        Label:
+            text: 'kRPC: '
+        Label:
+            id: krpc_version
+            text: root.client.krpc_version
+            bold: True
+
+        Label:
+            text: 'KSP: '
+        Label:
+            id: ksp_status
+            text: '###'
+            bold: True
+
+    BoxLayout:
+        orientation: 'horizontal'
+
+        Label:
+            text: 'Body: '
+        Label:
+            id: body_name
+            text: '###'
+            bold: True
+
+        Label:
+            text: 'Vessel: '
+        Label:
+            id: vessel_name
+            text: '###'
+            bold: True
