@@ -1,0 +1,17 @@
+<BasicControlsScreen>:
+
+    name: 'CONTROLS'
+
+    altitude_label: altitude
+    stage_button: stage
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        Label:
+            id: altitude
+            text: 'NO DATA'
+        Button:
+            id: stage
+            text: 'STAGE'
+            on_press: root.stage()

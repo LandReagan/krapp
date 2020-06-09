@@ -1,0 +1,35 @@
+<NavigationButton@Button>:
+
+    canvas:
+        Color:
+            rgba: blue_background
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: self.height / 3, self.height / 3
+
+    background_color: default_background_color
+    background_normal: ''
+    background_down: ''
+    background_disabled_normal: ''
+    background_disabled_down: ''
+
+    color: white
+    bold: True
+
+
+<NavigationBar>:
+
+    orientation: 'horizontal'
+    padding: 10
+    spacing: 10
+
+    NavigationButton:
+        id: nav_connection
+        text: 'CONNECT'
+        on_press: root.nav_to(self.text)
+
+    NavigationButton:
+        id: nav_control
+        text: 'CONTROLS'
+        on_press: root.nav_to(self.text)

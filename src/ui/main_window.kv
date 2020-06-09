@@ -1,12 +1,17 @@
 #:import StatusBar ui.status_bar.StatusBar
 #:import TitleBar ui.title_bar.TitleBar
-#:import ConnectionWidget ui.connection_widget.ConnectionWidget
+#:import ConnectionScreen ui.connection_screen.ConnectionScreen
+#:import BasicControlsScreen ui.basic_controls_screen.BasicControlsScreen
+#:import NavigationBar ui.navigation_bar.NavigationBar
 #:include ui/colors.kv
 
 <MainWindow>:
 
     title_bar: title_bar
+    navigation_bar: navigation_bar
+    screen_manager: screen_manager
     status_bar: status_bar
+
 
     on_size: root.on_size_changed()
 
@@ -23,8 +28,14 @@
         id: title_bar
         size_hint_y: .15
 
-    ConnectionWidget:
-        id: connection_widget
+    NavigationBar:
+        id: navigation_bar
+        size_hint_y: .15
+
+    ScreenManager:
+        id: screen_manager
+        ConnectionScreen:
+        BasicControlsScreen:
 
     StatusBar:
         id: status_bar

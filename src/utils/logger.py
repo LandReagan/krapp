@@ -2,7 +2,7 @@ import logging
 
 
 class KrappLogger:
-    """Logger handling class designed to be made available as a singleton via a provider"""
+
     def __init__(self) -> None:
         self.logger = logging.getLogger('main_logger')
         self.logger.setLevel(logging.DEBUG)
@@ -12,7 +12,8 @@ class KrappLogger:
         console_handler.setLevel(logging.DEBUG)
 
         # My formatter
-        formatter = logging.Formatter('%(asctime)s | %(levelname)s: %(message)s')
+        formatter = logging.Formatter(
+            '%(asctime)s | %(levelname)s: %(message)s')
         console_handler.setFormatter(formatter)
 
         self.logger.addHandler(console_handler)
@@ -36,3 +37,6 @@ class KrappLogger:
 
     def critical(self, message: str = "") -> None:
         self.logger.critical(message)
+
+
+logger = KrappLogger()
