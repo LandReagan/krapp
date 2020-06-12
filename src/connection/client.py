@@ -2,7 +2,7 @@
 kRPC client module. The all point of this is to manage the connection to
 kRPC, from connection parameters.
 """
-from typing import List
+from typing import List, Callable
 
 import krpc
 from utils.logger import logger
@@ -18,7 +18,6 @@ DEFAULT_NAME = 'KrApp'
 
 
 class Client(Observable):
-
     client: krpc.client.Client = None
 
     krpc_version: str = krpc.version.__version__
@@ -92,7 +91,8 @@ class Client(Observable):
     def start_game_scene_stream(self):
         if self.connection_status == 'CONNECTED':
             game_scene_stream = self.client.add_stream(getattr,
-                self.client.krpc, 'current_game_scene')
+                                                       self.client.krpc,
+                                                       'current_game_scene')
             game_scene_stream.add_callback(self.game_scene_change_callback)
             game_scene_stream.start()
 
@@ -109,7 +109,19 @@ class Client(Observable):
             logger.error(str(game_scene))
         self.notify_observers()
 
+    def add_altitude_callback(self, callback: Callable):
+        logger.debug('Altitude callback')
+        if self.vessel_name is not '?':
+            altitude_stream = self.client.add_stream(
+                getattr,
+                self.client.space_center.active_vessel.flight(),
+                'mean_altitude'
+            )
+            altitude_stream.rate = 10
+            altitude_stream.add_callback(callback)
+            altitude_stream.start()
+
     def stage(self):
         if self.client is not None:
-            self.client.space_center.active_vessel.control\
+            self.client.space_center.active_vessel.control \
                 .activate_next_stage()
