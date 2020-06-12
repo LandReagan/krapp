@@ -33,7 +33,6 @@ class StatusBar(BoxLayout):
 class KRPC2App(App):
     def build(self):
         self.title = 'KrApp'
-        Window.size = 400, 800
         return MainWindow()
 
 
