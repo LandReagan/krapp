@@ -10,7 +10,7 @@ INSTALL
 On a system with [python3](https://www.python.org/) installed, install following dependencies (using pip):
 
 <code>
-pip install protobuf dependency_injector kivy
+pip install protobuf dependency_injector kivy krpc
 </code>
 
 ...then run main.py, and you are good to go!
